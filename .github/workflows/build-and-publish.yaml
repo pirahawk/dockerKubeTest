@@ -65,4 +65,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         repository: dockerkubetest
-        tags: latest,{{github.run_number}}
+        tags: latest,${{github.run_number}}
