@@ -1,0 +1,8 @@
+#ignore folders
+
+.vs
+.vscode
+bin
+obj
+nugetPublish
+token.txt
