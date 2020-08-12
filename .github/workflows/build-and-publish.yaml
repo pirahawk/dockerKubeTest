@@ -64,5 +64,5 @@ jobs:
         username: "pirahawk"
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: pirahawk/dockerkubetest
+        repository: pirahawk/dockerkubetest/mysampleservice
         tags: latest,${{github.run_number}}
