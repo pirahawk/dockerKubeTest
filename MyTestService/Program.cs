@@ -23,15 +23,21 @@ namespace MyTestService
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((context, builder) =>
                 {
+                    //builder.AddEnvironmentVariables();
+
                     if (context.HostingEnvironment.IsProduction())
                     {
+                        //var keyVaultName = Environment.GetEnvironmentVariable("AzKeyVault");
+                        var config = builder.Build();
+                        var keyVaultName = config.GetValue<string>("AzKeyVault");
+
                         var azureServiceTokenProvider = new AzureServiceTokenProvider();
                         var keyVaultClient = new KeyVaultClient(
                             new KeyVaultClient.AuthenticationCallback(
                                 azureServiceTokenProvider.KeyVaultTokenCallback));
 
                         builder.AddAzureKeyVault(
-                            $"https://bogapikeyvault.vault.azure.net/",
+                            $"https://{keyVaultName}.vault.azure.net/",
                             keyVaultClient,
                             new DefaultKeyVaultSecretManager());
                     }
